@@ -1,0 +1,16 @@
+
+
+.banner {
+    color: black;
+    text-align: center;
+}
+
+#exercise_image {
+    width: 50%;
+    height: 50%;
+    flex: auto;
+}
+
+.home {
+    text-align: center;
+}

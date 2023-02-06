@@ -1,0 +1,36 @@
+{% extends 'frontend/all_exercises.html' %}
+
+{% block content %}
+{% if searched %}
+<h1>Exercises containing: {{ searched }}</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>Muscle Group</th>
+        <th>Exercise</th>
+        <th>Level</th>
+        <th>u_l_c</th>
+        <th>p_p</th>
+        <th>modality</th>
+        <th>joint</th>
+        <th>Details</th>
+    </tr>
+    {% for exercise in exercises %}
+    <tr>
+        <td>{{ exercise.muscle_group }}</td>
+        <td>{{ exercise.exercise }}</td>
+        <td>{{ exercise.level }}</td>
+        <td>{{ exercise.u_l_c }}</td>
+        <td>{{ exercise.p_p }}</td>
+        <td>{{ exercise.modality }}</td>
+        <td>{{ exercise.joint }}</td>
+        <td><a href="https://www.google.com/search?q={{ exercise.exercise }}" target="_blank">Link</a></td>
+    </tr>
+    {% endfor %}
+</table>
+   
+
+    {% else %}
+    <h1>You did not search for anything</h1>
+    {% endif %}
+  
+{% endblock %}

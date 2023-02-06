@@ -1,0 +1,29 @@
+{% extends 'frontend/all_exercises.html' %}
+
+{% block content %}
+<h1>All Chest Exercises</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>Muscle Group</th>
+        <th>Exercise</th>
+        <th>Level</th>
+        <th>u_l_c</th>
+        <th>p_p</th>
+        <th>modality</th>
+        <th>joint</th>
+    </tr>
+    {% for exercise in chest %}
+    <tr>
+
+        <td>{{ exercise.muscle_group }}</td>
+        <td>{{ exercise.exercise }}</td>
+        <td>{{ exercise.level }}</td>
+        <td>{{ exercise.u_l_c }}</td>
+        <td>{{ exercise.p_p }}</td>
+        <td>{{ exercise.modality }}</td>
+        <td>{{ exercise.joint }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
+
