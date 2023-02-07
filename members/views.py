@@ -6,8 +6,19 @@ from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
     
 def register_user(request):
-    form = UserCreationForm()
-    return render(request, 'frontend/register.html', {'form': form})
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, f'Account created for {username}!')
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'members/register.html', {'form': form})
 
 def login_user(request):
     if request.method == 'POST':
@@ -23,3 +34,8 @@ def login_user(request):
             return redirect('login_user')
     else:
         return render(request, 'members/login.html')
+    
+def logout_user(request):
+    logout(request)
+    messages.success(request, 'You have been logged out!')
+    return redirect('home')
